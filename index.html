@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="#" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إبداع 360 - الخطة الاستراتيجية لقطاع الموارد البشرية</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    :root {
+      --primary-color: #1e3a8a;
+      --primary-hover: #3b82f6;
+      --accent-color: #ffffff;
+      --golden-hover: #1e3a8a;
+      --text-color: #ffffff;
+      --bg-overlay: rgba(30, 58, 138, 0.1);
+      --form-bg: rgba(255, 255, 255, 0.1);
+      --input-bg: rgba(255,255,255,0.2);
+      --input-hover: rgba(255,255,255,0.3);
+      --border-radius: 14px;
+      --card-bg: rgba(0, 0, 0, 0.7);
+      --mobile-breakpoint: 768px;
+      --tablet-breakpoint: 992px;
+      --field-green: #1e3a8a;
+      --field-lines: rgba(255, 255, 255, 0.7);
+      --goal-color: #e0e0e0;
+      --goal-net: rgba(0, 0, 0, 0.1);
+      --main-blue: #1e3a8a;
+      --light-blue: #3b82f6;
+      --fm-dark: #fff;
+      --section-bg: rgba(0, 0, 0, 0.6);
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: #000 url('./assets/home/BG.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--text-color);
+      overflow-x: hidden;
+      font-size: 16px;
+      position: relative;
+    }
+    
+    /* شريط التنقل - شفاف */
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      background: transparent;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+    }
+    
+    .logo-section img {
+      height: 80px;
+      width: auto;
+      transition: all 0.5s ease;
+      filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+    }
+    
+    .logo-section img:hover {
+      transform: scale(1.15);
+      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
+    }
+    
+    .hashtag {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--accent-color);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    
+    /* شخصية ألفا التفاعلية - أكبر حجماً */
+    .alpha-character {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 99;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      animation: alphaFloat 3s ease-in-out infinite;
+    }
+
+    .alpha-character img {
+      width: 150px;
+      cursor: pointer;
+      transition: all 0.3s;
+      filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+    }
+
+    .alpha-character:hover img {
+      transform: scale(1.1);
+      animation: alphaFloatHover 2s ease-in-out infinite;
+    }
+
+    .alpha-tooltip {
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 15px;
+      border-radius: 15px;
+      width: 300px;
+      max-width: 90vw;
+      text-align: center;
+      font-size: 0.9em;
+      line-height: 1.6;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      border: 1px solid var(--light-blue);
+      z-index: 1000;
+      white-space: normal;
+      word-wrap: break-word;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      margin-bottom: 10px;
+    }
+
+    .alpha-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      right: 20px;
+      border-width: 8px;
+      border-style: solid;
+      border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
+    }
+
+    .alpha-character.active .alpha-tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* تأثيرات الجزيئات - نجووم صغيرة */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .particle {
+      position: absolute;
+      background: var(--light-blue);
+      border-radius: 50%;
+      animation: floatParticle linear infinite;
+    }
+    
+    @keyframes floatParticle {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+    
+    /* محتوى صفحة البرزنتيشن */
+    .presentation-page {
+      padding: 40px 5% 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .presentation-header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    .presentation-title {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .presentation-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--light-blue);
+      border-radius: 2px;
+    }
+    
+    .presentation-subtitle {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+      color: var(--text-color);
+    }
+    
+    /* قسم المقدمة */
+    .intro-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 60px;
+      text-align: center;
+      background: var(--section-bg);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--light-blue);
+    }
+    
+    .intro-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .intro-logo {
+      height: 250px;
+      width: 250px;
+      transition: all 0.3s;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.322);
+      padding: 15px;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+      object-fit: contain;
+    }
+    
+    .intro-logo:hover {
+      transform: scale(1.2);
+      filter: drop-shadow(0 0 15px var(--light-blue));
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+    }
+    
+    .intro-message {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-top: 20px;
+      max-width: 800px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--light-blue);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      font-size: 0.95rem;
+      color: var(--text-color);
+    }
+    
+    .intro-message::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+      transform: translateX(-100%);
+      transition: 0.6s;
+    }
+    
+    .intro-message:hover::before {
+      transform: translateX(100%);
+    }
+    
+    .hr-thanks {
+      color: var(--light-blue);
+      font-weight: 700;
+    }
+    
+    /* أقسام البرزنتيشن */
+    .presentation-section {
+      margin-bottom: 80px;
+      background: var(--section-bg);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--light-blue);
+    }
+    
+    .section-title {
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin-bottom: 30px;
+      text-align: center;
+      position: relative;
+      display: block;
+      width: 100%;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--light-blue);
+      border-radius: 2px;
+    }
+    
+    /* مقدمة ألفا لكل قسم */
+    .alpha-intro {
+      background: rgba(59, 130, 246, 0.15);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 30px;
+      border-right: 5px solid var(--light-blue);
+      font-style: italic;
+      position: relative;
+      overflow: hidden;
+      color: var(--text-color);
+    }
+    
+    .alpha-intro::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 3rem;
+      color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* بطاقات الفرق */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    
+    .presentation-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      border: 1px solid var(--light-blue);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      color: var(--text-color);
+    }
+    
+    .presentation-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+      transform: translateX(-100%);
+      transition: 0.6s;
+    }
+    
+    .presentation-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+      background: rgba(0, 0, 0, 0.8);
+    }
+    
+    .presentation-card:hover::before {
+      transform: translateX(100%);
+    }
+    
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+      transition: all 0.3s;
+      color: var(--light-blue);
+    }
+    
+    .presentation-card:hover .card-icon {
+      transform: scale(1.2);
+      color: var(--accent-color);
+    }
+    
+    .card-title {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: var(--accent-color);
+      text-align: center;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    .card-content {
+      flex-grow: 1;
+    }
+    
+    .card-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .card-list li {
+      margin-bottom: 10px;
+      padding-right: 20px;
+      position: relative;
+    }
+    
+    .card-list li::before {
+      content: '•';
+      color: var(--light-blue);
+      font-weight: bold;
+      position: absolute;
+      right: 0;
+    }
+    
+    /* قسم المعايير */
+    .standards-card {
+      border-top: 4px solid #4CAF50;
+    }
+    
+    .standards-card .card-icon {
+      color: #4CAF50;
+    }
+    
+    /* قسم القوانين */
+    .regulations-card {
+      border-top: 4px solid #2196F3;
+    }
+    
+    .regulations-card .card-icon {
+      color: #2196F3;
+    }
+    
+    /* قسم الهيكل التنظيمي */
+    .structure-card {
+      border-top: 4px solid #9C27B0;
+    }
+    
+    .structure-card .card-icon {
+      color: #9C27B0;
+    }
+    
+    /* خطة التطوير */
+    .development-card {
+      border-top: 4px solid #FF9800;
+    }
+    
+    .development-card .card-icon {
+      color: #FF9800;
+    }
+    
+    .month-section {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed rgba(255,255,255,0.2);
+    }
+    
+    .month-section:last-child {
+      border-bottom: none;
+    }
+    
+    .month-title {
+      color: var(--accent-color);
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .week-plan {
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(59,130,246,0.2);
+    }
+    
+    .week-title {
+      color: var(--light-blue);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    /* قسم الشكر في النهاية */
+    .thanks-section {
+      text-align: center;
+      padding: 30px 20px;
+      background: var(--section-bg);
+      border-radius: var(--border-radius);
+      margin-top: 60px;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--light-blue);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--text-color);
+    }
+    
+    .thanks-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+      transform: translateX(-100%);
+      transition: 0.6s;
+    }
+    
+    .thanks-section:hover::before {
+      transform: translateX(100%);
+    }
+    
+    .thanks-title {
+      color: var(--accent-color);
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .thanks-message {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    
+    .hr-head-profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+      gap: 10px;
+    }
+    
+    .hr-head-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--light-blue);
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .hr-head-name {
+      font-size: 1.3rem;
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+    
+    .hr-head-role {
+      font-size: 1rem;
+      color: #fff;
+      background: var(--light-blue);
+      padding: 5px 15px;
+      border-radius: 20px;
+    }
+    
+    .goodbye-message {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      color: var(--accent-color);
+      font-weight: bold;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    /* تأثيرات الحركة */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-card {
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+    
+    @keyframes alphaFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    @keyframes alphaFloatHover {
+      0%, 100% {
+        transform: translateY(0) scale(1.1);
+      }
+      50% {
+        transform: translateY(-15px) scale(1.1);
+      }
+    }
+    
+    /* تحسينات للهواتف المحمولة */
+    @media (max-width: 768px) {
+      .presentation-page {
+        padding: 30px 3% 40px;
+      }
+      
+      .presentation-title {
+        font-size: 2rem;
+      }
+      
+      .presentation-subtitle {
+        font-size: 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.6rem;
+      }
+      
+      .intro-logo {
+        height: 150px;
+        width: 150px;
+      }
+      
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .alpha-character {
+        width: 100px;
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .alpha-character img {
+        width: 100px;
+      }
+      
+      .alpha-tooltip {
+        width: 200px;
+        font-size: 0.8em;
+        padding: 10px;
+        right: 0;
+      }
+      
+      .nav-bar {
+        padding: 10px 3%;
+      }
+      
+      .logo-section img {
+        height: 60px;
+      }
+      
+      .hashtag {
+        font-size: 1.2rem;
+      }
+      
+      .thanks-title {
+        font-size: 1.5rem;
+      }
+      
+      .thanks-message {
+        font-size: 0.9rem;
+      }
+      
+      .hr-head-image {
+        width: 100px;
+        height: 100px;
+      }
+      
+      .goodbye-message {
+        font-size: 1rem;
+      }
+      
+      .intro-message {
+        padding: 15px;
+        font-size: 0.9rem;
+      }
+      
+      .presentation-section {
+        padding: 20px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .presentation-page {
+        padding: 20px 3% 30px;
+      }
+      
+      .presentation-title {
+        font-size: 1.8rem;
+      }
+      
+      .alpha-character {
+        width: 80px;
+        bottom: 15px;
+        right: 15px;
+      }
+      
+      .alpha-character img {
+        width: 80px;
+      }
+      
+      .alpha-tooltip {
+        width: 180px;
+      }
+      
+      .logo-section img {
+        height: 70px;
+      }
+      
+      .hashtag {
+        font-size: 1rem;
+      }
+      
+      .intro-logo {
+        height: 120px;
+        width: 120px;
+      }
+      
+      .thanks-title {
+        font-size: 1.4rem;
+      }
+      
+      .thanks-message {
+        font-size: 0.85rem;
+      }
+      
+      .hr-head-image {
+        width: 90px;
+        height: 90px;
+      }
+      
+      .hr-head-name {
+        font-size: 1.2rem;
+      }
+      
+      .hr-head-role {
+        font-size: 0.9rem;
+      }
+      
+      .goodbye-message {
+        font-size: 0.9rem;
+      }
+      
+      .intro-message {
+        padding: 12px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="particles" id="particles"></div>
+
+<!-- شخصية ألفا التفاعلية -->
+<div class="alpha-character" id="alpha-character">
+  <div class="alpha-tooltip" id="alpha-tooltip">
+    أهلاً! أنا ألفا، المساعد الشخصي في مشروع إبداع 360. سأكون معكم في رحلة تطوير قطاع الموارد البشرية. استعدوا لرحلة تطوير رهيبة!
+  </div>
+  <img src="./assets/home/ALPHA.png" alt="ألفا المساعد الشخصي" id="alpha-image">
+</div>
+
+<!-- شريط التنقل -->
+<div class="nav-bar">
+  <!-- الهاشتاج على اليسار -->
+  <div class="logo-section">
+    <div class="hashtag">#شباب_يصنعون_المستقبل</div>
+  </div>
+  
+  <!-- شعارات على اليمين -->
+  <div class="logo-section">
+    <img src="./assets/home/logo-ministry.png" alt="شعار وزارة الشباب والرياضة">
+    <img src="./assets/home/EBDA3-LOGO.png" alt="شعار إبداع 360">
+  </div>
+</div>
+
+<!-- محتوى صفحة البرزنتيشن -->
+<div class="presentation-page">
+  <!-- المقدمة -->
+  <div class="intro-section" data-alpha-message="أهلاً بيكوا في الخطة الاستراتيجية لقطاع الموارد البشرية في إبداع 360! هنتطور مع بعض ونوصل لأعلى مستوى">
+    <div class="intro-logos">
+      <img src="./assets/home/EBDA3-LOGO.png" alt="إبداع 360" class="intro-logo">
+    </div>
+    
+    <h1 class="presentation-title">الخطة الاستراتيجية لقطاع الموارد البشرية</h1>
+    <p class="presentation-subtitle">تحت رعاية وزارة الشباب والرياضة - مشروع إبداع 360</p>
+    
+    <div class="intro-message">
+      <p>أهلاً بيكوا في خطتي الاستراتيجية، أنا سعد المرجاوي رئيس قطاع الموارد البشرية المركزي لمشروع إبداع 360. هنشتغل مع بعض على تطوير مهارات مسؤلي الموارد البشرية في كل المحافظات، وكل واحد فينا هيتحول من مستواه الحالي لمستوى أعلى بكتير. فاستعدوا لرحلة تطوير مش هتنسوها!</p>
+    </div>
+  </div>
+  
+  <!-- قسم الهيكل التنظيمي -->
+  <div class="presentation-section" data-alpha-message="هنتعرف على الهيكل التنظيمي لقطاع الموارد البشرية في مشروع إبداع 360">
+    <h2 class="section-title">الهيكل التنظيمي لقطاع الموارد البشرية</h2>
+    
+    <div class="alpha-intro">
+      <i class="fas fa-quote-left"></i> 
+      بصو بقا علشان نضمن إن كل محافظة تاخد الاهتمام والتدريب المناسب، هنعمل هيكل تنظيمي واضح ومحكم. كل مسؤول موارد بشرية في المحافظة هيتبعه لرئيس قطاع الموارد البشرية المركزي، وكل مسؤول هيبقي مسؤول عن متطوعي المحافظة.
+    </div>
+    
+    <div class="cards-grid">
+      <!-- رئيس القطاع المركزي -->
+      <div class="presentation-card structure-card animate-card" style="animation-delay: 0.1s" data-alpha-message="رئيس القطاع المركزي هيكون مسؤول عن التخطيط الاستراتيجي والإشراف العام">
+        <div class="card-icon">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <h3 class="card-title">رئيس قطاع الموارد البشرية المركزي</h3>
+        <div class="card-content">
+          <ul class="card-list">
+            <li>التخطيط الاستراتيجي لقطاع الموارد البشرية</li>
+            <li>الإشراف على مسؤلي المحافظات</li>
+            <li>وضع السياسات والمعايير</li>
+            <li>تقييم الأداء العام للقطاع</li>
+            <li>التواصل مع إدارة المشروع</li>
+            <li>تطوير خطط التدريب والتأهيل</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- مسؤلي المحافظات -->
+      <div class="presentation-card structure-card animate-card" style="animation-delay: 0.2s" data-alpha-message="مسؤلي المحافظات هما حلقة الوصل بين القيادة والمتطوعين">
+        <div class="card-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3 class="card-title">مسؤلي الموارد البشرية بالمحافظات</h3>
+        <div class="card-content">
+          <ul class="card-list">
+            <li>التواصل المباشر مع المتطوعين</li>
+            <li>تنفيذ خطط التدريب في المحافظة</li>
+            <li>متابعة أداء المتطوعين</li>
+            <li>تطبيق السياسات والمعايير</li>
+            <li>رفع التقارير الدورية</li>
+            <li>حل المشكلات المحلية</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- المتطوعين -->
+      <div class="presentation-card structure-card animate-card" style="animation-delay: 0.3s" data-alpha-message="المتطوعين هم عماد المشروع وقلبه النابض">
+        <div class="card-icon">
+          <i class="fas fa-hands-helping"></i>
+        </div>
+        <h3 class="card-title">المتطوعين</h3>
+        <div class="card-content">
+          <ul class="card-list">
+            <li>تنفيذ الأنشطة والفعاليات</li>
+            <li>المشاركة في البرامج التدريبية</li>
+            <li>تمثيل المشروع في المحافل المختلفة</li>
+            <li>المساهمة في تحقيق أهداف المشروع</li>
+            <li>الالتزام بالمعايير والسياسات</li>
+            <li>نشر رسالة المشروع في المجتمع</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- قسم المعايير والشروط -->
+  <div class="presentation-section" data-alpha-message="دي المعايير الأساسية اللي هتساعدنا في اختيار المتطوعين وتقييم أدائهم">
+    <h2 class="section-title">معايير الاختيار والتقييم</h2>
+    
+    <div class="alpha-intro">
+      <i class="fas fa-quote-left"></i> 
+      علشان نضمن إن فريقنا يكون من أفضل العناصر، هنطبق معايير واضحة للاختيار والتقييم. المعايير دي هتساعدنا في اختيار المتطوعين المناسبين وتقييم أدائهم بشكل عادل.
+    </div>
+    
+    <div class="cards-grid">
+      <!-- المعايير الأساسية -->
+      <div class="presentation-card standards-card animate-card" style="animation-delay: 0.1s">
+        <div class="card-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h3 class="card-title">المعايير الأساسية للاختيار</h3>
+        <div class="card-content">
+          <ul class="card-list">
+            <li><strong>السلوك:</strong> الالتزام بالأخلاقيات والقيم</li>
+            <li><strong>أسلوب التعامل:</strong> القدرة على التواصل الفعال</li>
+            <li><strong>الالتزام:</strong> الحضور والانضباط</li>
+            <li><strong>المشاركة الفعّالة:</strong> المساهمة الإيجابية في الأنشطة</li>
+            <li><strong>التقييمات:</strong> الأداء في الاختبارات والتقييمات</li>
+            <li><strong>الفيدباك:</strong> ردود الفعل من الزملاء والمسؤولين</li>
+            <li><strong>مستوى المساهمة:</strong> التأثير في الأنشطة والفعاليات</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- معايير إضافية -->
+      <div class="presentation-card standards-card animate-card" style="animation-delay: 0.2s">
+        <div class="card-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <h3 class="card-title">معايير إضافية للتقييم</h3>
+        <div class="card-content">
+          <ul class="card-list">
+            <li><strong>القدرة على العمل الجماعي</strong></li>
+            <li><strong>المبادرة وروح الابتكار</strong></li>
+            <li><strong>القدرة على حل المشكلات</strong></li>
+            <li><strong>المرونة والتكيف مع المتغيرات</strong></li>
+            <li><strong>القدرة على التعلم المستمر</strong></li>
+            <li><strong>الالتزام برؤية وأهداف المشروع</strong></li>
+            <li><strong>القدرة على تمثيل المشروع بشكل لائق</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- قسم القوانين واللوائح -->
+  <div class="presentation-section" data-alpha-message="القوانين واللوائح هتساعدنا في الحفاظ على الانضباط والجودة في العمل">
+    <h2 class="section-title">القوانين واللوائح الانضباطية</h2>
+    
+    <div class="alpha-intro">
+      <i class="fas fa-quote-left"></i> 
+      علشان نضمن إن الشغل يمشي بشكل منظم ومحترف، هنطبق مجموعة من القوانين واللوائح. القوانين دي هتساعدنا في الحفاظ على الانضباط والجودة في الشغل، وضمان حقوق وواجبات الكل.
+    </div>
+    
+    <div class="cards-grid">
+      <!-- لوائح الانضباط -->
+      <div class="presentation-card regulations-card animate-card" style="animation-delay: 0.1s">
+        <div class="card-icon">
+          <i class="fas fa-gavel"></i>
+        </div>
+        <h3 class="card-title">لوائح الانضباط</h3>
+        <div class="card-content">
+          <ul class="card-list">
+            <li>الالتزام بمواعيد الحضور والانصراف</li>
+            <li>احترام قواعد وآداب العمل</li>
+            <li>الحفاظ على سرية المعلومات</li>
+            <li>الالتزام بمعايير الجودة في العمل</li>
+            <li>احترام الزملاء والرؤساء</li>
+            <li>الالتزام ببروتوكولات التواصل</li>
+            <li>الحفاظ على ممتلكات المشروع</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- آليات المتابعة والتقييم -->
+      <div class="presentation-card regulations-card animate-card" style="animation-delay: 0.2s">
+        <div class="card-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3 class="card-title">آليات المتابعة والتقييم</h3>
+        <div class="card-content">
+          <ul class="card-list">
+            <li>تقييم أداء ربع سنوي لجميع المتطوعين</li>
+            <li>تقارير شهرية عن سير العمل في المحافظات</li>
+            <li>نظام متابعة إلكتروني للمهام والإنجازات</li>
+            <li>جلسات تقييم فردية مع مسؤلي المحافظات</li>
+            <li>استبيانات دورية لقياس الرضا</li>
+            <li>نظام حوافز للمتميزين</li>
+            <li>برامج تطوير للمتطوعين الواعدين</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- آليات حل النزاعات -->
+      <div class="presentation-card regulations-card animate-card" style="animation-delay: 0.3s">
+        <div class="card-icon">
+          <i class="fas fa-handshake"></i>
+        </div>
+        <h3 class="card-title">آليات حل النزاعات</h3>
+        <div class="card-content">
+          <ul class="card-list">
+            <li>لجنة لحل النزاعات على مستوى المحافظة</li>
+            <li>لجنة استئناف على المستوى المركزي</li>
+            <li>قنوات اتصال مباشرة للشكاوى والمقترحات</li>
+            <li>سياسة الباب المفتوح للتواصل مع القيادة</li>
+            <li>جلسات وساطة لحل الخلافات</li>
+            <li>نظام إنذارات قبل اتخاذ إجراءات تأديبية</li>
+            <li>ضمان حق الدفاع للجميع</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- خطة تدريب مسؤلي المحافظات -->
+  <div class="presentation-section" data-alpha-message="دي خطة تدريب مسؤلي المحافظات علشان نضمن إنهم مؤهلين للقيام بمهامهم">
+    <h2 class="section-title">خطة تدريب مسؤلي المحافظات</h2>
+    
+    <div class="alpha-intro">
+      <i class="fas fa-quote-left"></i> 
+      علشان نضمن إن مسؤلي المحافظات يكونوا مؤهلين للقيام بمهامهم، هننفذ خطة تدريب متكاملة. الخطة دي هتغطي جميع الجوانب اللي هتساعدهم في إدارة فرقهم بشكل فعال.
+    </div>
+    
+    <div class="cards-grid">
+      <!-- المرحلة الأولى -->
+      <div class="presentation-card development-card animate-card" style="animation-delay: 0.1s">
+        <div class="card-icon">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <h3 class="card-title">المرحلة الأولى: شهر التأسيس</h3>
+        <div class="card-content">
+          <p><strong>الهدف:</strong> تأسيس المعرفة الأساسية بمشروع إبداع 360 وأدوار مسؤلي الموارد البشرية.</p>
+          
+          <div class="month-section">
+            <h4 class="month-title"><i class="fas fa-calendar-week"></i> الأسبوع الأول</h4>
+            <div class="week-plan">
+              <h5 class="week-title"><i class="fas fa-chalkboard-teacher"></i> جلسة "مشروع إبداع 360: الرؤية والرسالة"</h5>
+              <ul class="card-list">
+                <li>تعريف بمشروع إبداع 360 وأهدافه</li>
+                <li>رؤية ورسالة المشروع</li>
+                <li>دور وزارة الشباب والرياضة في المشروع</li>
+                <li>التطبيق: تقديم ذاتي وتعريف بدور كل مسؤول</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="month-section">
+            <h4 class="month-title"><i class="fas fa-calendar-week"></i> الأسبوع الثاني</h4>
+            <div class="week-plan">
+              <h5 class="week-title"><i class="fas fa-users"></i> جلسة "إدارة الفرق والتواصل الفعال"</h5>
+              <ul class="card-list">
+                <li>مبادئ إدارة الفرق</li>
+                <li>أساليب التواصل الفعال</li>
+                <li>إدارة الاجتماعات</li>
+                <li>التطبيق: محاكاة إدارة فريق</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="month-section">
+            <h4 class="month-title"><i class="fas fa-calendar-week"></i> الأسبوع الثالث</h4>
+            <div class="week-plan">
+              <h5 class="week-title"><i class="fas fa-tasks"></i> جلسة "التخطيط والمتابعة"</h5>
+              <ul class="card-list">
+                <li>أساسيات التخطيط للمهام</li>
+                <li>أساليب المتابعة والتقييم</li>
+                <li>إعداد التقارير</li>
+                <li>التطبيق: إعداد خطة أسبوعية</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="month-section">
+            <h4 class="month-title"><i class="fas fa-calendar-week"></i> الأسبوع الرابع</h4>
+            <div class="week-plan">
+              <h5 class="week-title"><i class="fas fa-brain"></i> جلسة "الذكاء العاطفي في العمل"</h5>
+              <ul class="card-list">
+                <li>مفهوم الذكاء العاطفي</li>
+                <li>أهميته في العمل</li>
+                <li>تطبيقات عملية</li>
+                <li>التطبيق: تمارين الذكاء العاطفي</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- المرحلة الثانية -->
+      <div class="presentation-card development-card animate-card" style="animation-delay: 0.2s">
+        <div class="card-icon">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <h3 class="card-title">المرحلة الثانية: شهر التطبيقات العملية</h3>
+        <div class="card-content">
+          <p><strong>الهدف:</strong> تطبيق المعارف الأساسية في مواقف عملية.</p>
+          
+          <div class="month-section">
+            <h4 class="month-title"><i class="fas fa-calendar-week"></i> الأسبوع الأول</h4>
+            <div class="week-plan">
+              <h5 class="week-title"><i class="fas fa-file-excel"></i> جلسة "أدوات Office للعمل"</h5>
+              <ul class="card-list">
+                <li>المهارات الأساسية في Excel</li>
+                <li>إعداد العروض التقديمية</li>
+                <li>إدارة البريد الإلكتروني</li>
+                <li>التطبيق: تصميم جدول متابعة</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="month-section">
+            <h4 class="month-title"><i class="fas fa-calendar-week"></i> الأسبوع الثاني</h4>
+            <div class="week-plan">
+              <h5 class="week-title"><i class="fas fa-user-friends"></i> جلسة "المقابلات والتقييم"</h5>
+              <ul class="card-list">
+                <li>إجراء المقابلات</li>
+                <li>تقييم المتطوعين</li>
+                <li>تقديم الملاحظات</li>
+                <li>التطبيق: محاكاة مقابلات</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="month-section">
+            <h4 class="month-title"><i class="fas fa-calendar-week"></i> الأسبوع الثالث</h4>
+            <div class="week-plan">
+              <h5 class="week-title"><i class="fas fa-comment-dots"></i> جلسة "التواصل الفعال"</h5>
+              <ul class="card-list">
+                <li>أساليب التواصل الفعال</li>
+                <li>إدارة الحوارات الصعبة</li>
+                <li>تقديم الملاحظات البناءة</li>
+                <li>التطبيق: تمارين عملية</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="month-section">
+            <h4 class="month-title"><i class="fas fa-calendar-week"></i> الأسبوع الرابع</h4>
+            <div class="week-plan">
+              <h5 class="week-title"><i class="fas fa-puzzle-piece"></i> جلسة "حل المشكلات"</h5>
+              <ul class="card-list">
+                <li>منهجيات حل المشكلات</li>
+                <li>اتخاذ القرارات</li>
+                <li>إدارة الأزمات</li>
+                <li>التطبيق: دراسة حالات</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- المرحلة الثالثة -->
+      <div class="presentation-card development-card animate-card" style="animation-delay: 0.3s">
+        <div class="card-icon">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <h3 class="card-title">المرحلة الثالثة: شهر التكامل والقيادة</h3>
+        <div class="card-content">
+          <p><strong>الهدف:</strong> دمج المعارف والمهارات في مشروع متكامل.</p>
+          
+          <div class="month-section">
+            <h4 class="month-title"><i class="fas fa-calendar-week"></i> الأسبوع الأول</h4>
+            <div class="week-plan">
+              <h5 class="week-title"><i class="fas fa-chart-line"></i> جلسة "التخطيط الاستراتيجي"</h5>
+              <ul class="card-list">
+                <li>مبادئ التخطيط الاستراتيجي</li>
+                <li>وضع الأهداف</li>
+                <li>تحليل SWOT</li>
+                <li>التطبيق: وضع خطة استراتيجية</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="month-section">
+            <h4 class="month-title"><i class="fas fa-calendar-week"></i> الأسبوع الثاني</h4>
+            <div class="week-plan">
+              <h5 class="week-title"><i class="fas fa-gavel"></i> جلسة "السياسات والإجراءات"</h5>
+              <ul class="card-list">
+                <li>فهم السياسات والإجراءات</li>
+                <li>تطبيق اللوائح</li>
+                <li>ضمان الامتثال</li>
+                <li>التطبيق: مناقشة سياسات</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="month-section">
+            <h4 class="month-title"><i class="fas fa-calendar-week"></i> الأسبوع الثالث</h4>
+            <div class="week-plan">
+              <h5 class="week-title"><i class="fas fa-chart-bar"></i> جلسة "تقييم الأداء"</h5>
+              <ul class="card-list">
+                <li>منهجيات تقييم الأداء</li>
+                <li>إعداد مؤشرات الأداء</li>
+                <li>تقييم الفرق</li>
+                <li>التطبيق: تقييم أداء</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="month-section">
+            <h4 class="month-title"><i class="fas fa-calendar-week"></i> الأسبوع الرابع</h4>
+            <div class="week-plan">
+              <h5 class="week-title"><i class="fas fa-graduation-cap"></i> جلسة "المشروع النهائي"</h5>
+              <ul class="card-list">
+                <li>تطبيق شامل لكل ما تم تعلمه</li>
+                <li>تقديم مشروع نهائي</li>
+                <li>تقييم المشاريع</li>
+                <li>التطبيق: تقديم المشروع والعرض</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- قسم الشكر والوداع -->
+  <div class="thanks-section">
+    <h2 class="thanks-title">سعد و ألفا ,شكرا</h2>
+    
+    <div class="thanks-message">
+      <p>وفي النهاية, من رئيس قطاع الموارد البشرية المركزي وألفا، بنشكركم أوي على وقتكم واهتمامكم. شكراً ليكوا على دعمكم وثقتكم فينا، واللي ديما بتكون دافع كبير لينا علشان نكمل ونتطور.</p>
+      
+      <p>بتمنى تكونوا استمتعتم بالخطة الاستراتيجية، وعرفت أوصل ليكوا رسالتنا بطريقة واضحة وممتعة. احنا متحمسين نشتغل على الخطة دي علشان أطور من أدائنا ونكون أفضل فريق ممكن.</p>
+      
+      <p>ومعلش يا مسؤلي المحافظات، أنا عارف إن المسؤولية كبيرة والتحديات كتير، لكن مع بعض هنقدر على أي حاجة. مستعدين نعمل اللي علينا علشان نوصل لفريق الموارد البشرية في إبداع 360 لمستوى عالمي. كل واحد فينا مهم وكل مجهود هيبقى له تأثير.</p>
+      
+      <p>مستقبلنا مش هيتبني إلا بإيدينا، وكل واحد فينا هيكون له دور مهم في صناعة المستقبل. يلا بينا نبدأ الرحلة دي مع بعض!</p>
+    </div>
+    
+    <div class="hr-head-profile">
+      <img src="./assets/home/SAAD.jpg" alt="رئيس قطاع الموارد البشرية" class="hr-head-image">
+      <div class="hr-head-name">سعد المرجاوي</div>
+      <div class="hr-head-role"> رئيس قطاع الموارد البشرية المركزي <br> مشروع إبداع 360 - وزارة الشباب والرياضة</div>
+    </div>
+    
+    <div class="goodbye-message">
+      <p>#شباب_يصنعون_المستقبل</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // تهيئة الصفحة
+  document.addEventListener('DOMContentLoaded', function() {
+    // إنشاء الجزيئات المتحركة
+    createParticles();
+    
+    // تهيئة شخصية ألفا التفاعلية
+    setupAlphaCharacter();
+    
+    // تفعيل تأثيرات الظهور عند التمرير
+    setupScrollAnimations();
+    
+    // إعداد تفاعل ألفا مع عناصر الصفحة
+    setupAlphaInteractions();
+    
+    // تحميل أيقونات Feather
+    if (typeof feather !== 'undefined') {
+      feather.replace();
+    }
+  });
+
+  // إنشاء الجزيئات المتحركة
+  function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    const count = Math.floor(window.innerWidth / 20);
+    
+    for (let i = 0; i < count; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      
+      const size = Math.random() * 5 + 2;
+      const posX = Math.random() * window.innerWidth;
+      const duration = Math.random() * 15 + 10;
+      const delay = Math.random() * 10;
+      
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${posX}px`;
+      particle.style.bottom = '0';
+      particle.style.animationDuration = `${duration}s`;
+      particle.style.animationDelay = `${delay}s`;
+      
+      particlesContainer.appendChild(particle);
+    }
+  }
+  
+  // إعداد شخصية ألفا التفاعلية
+  function setupAlphaCharacter() {
+    const alphaCharacter = document.getElementById('alpha-character');
+    const alphaTooltip = document.getElementById('alpha-tooltip');
+    const alphaImage = document.getElementById('alpha-image');
+    
+    // رسالة ترحيبية عند تحميل الصفحة مع تأثيرات
+    setTimeout(() => {
+      alphaTooltip.textContent = 'أهلاً! أنا ألفا، المساعد الشخصي في مشروع إبداع 360. استعدوا لرحلة تطوير قطاع الموارد البشرية! هنتعلم مع بعض ونوصل لأعلى مستوى.';
+      alphaCharacter.classList.add('active');
+      alphaCharacter.classList.add('alpha-welcoming');
+      
+      setTimeout(() => {
+        alphaCharacter.classList.remove('active');
+        alphaCharacter.classList.remove('alpha-welcoming');
+      }, 8000);
+    }, 1500);
+    
+    // إظهار الرسالة عند النقر على ألفا
+    alphaCharacter.addEventListener('click', function() {
+      const messages = [
+        'أنا ألفا، المساعد الشخصي في مشروع إبداع 360!',
+        'قطاع الموارد البشرية في إبداع 360 هيكون الأقوى!',
+        'هنشتغل مع بعض علشان نوصل لأعلى مستوى في إدارة المتطوعين.',
+        'مستقبلنا مش هيتبني إلا بإيدينا!',
+        'شكراً لدعمكم وثقتكم في فريقنا!',
+        'تحت رعاية وزارة الشباب والرياضة - معاً نبني المستقبل!'
+      ];
+      
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      alphaTooltip.textContent = randomMessage;
+      
+      alphaCharacter.classList.add('active');
+      alphaCharacter.classList.add('alpha-dancing');
+      
+      setTimeout(() => {
+        alphaCharacter.classList.remove('active');
+        alphaCharacter.classList.remove('alpha-dancing');
+      }, 6000);
+    });
+    
+    // تأثير اهتزاز عند المرور بالفأرة
+    alphaCharacter.addEventListener('mouseenter', function() {
+      alphaCharacter.classList.add('alpha-welcoming');
+    });
+    
+    alphaCharacter.addEventListener('mouseleave', function() {
+      alphaCharacter.classList.remove('alpha-welcoming');
+    });
+  }
+  
+  // تفعيل تأثيرات الظهور عند التمرير
+  function setupScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.animate-card');
+    
+    function checkScroll() {
+      animatedElements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (elementPosition < screenPosition) {
+          element.style.opacity = 1;
+        }
+      });
+    }
+    
+    // التحقق عند التحميل وعند التمرير
+    window.addEventListener('load', checkScroll);
+    window.addEventListener('scroll', checkScroll);
+  }
+  
+  // إعداد تفاعل ألفا مع عناصر الصفحة
+  function setupAlphaInteractions() {
+    const alphaCharacter = document.getElementById('alpha-character');
+    const alphaTooltip = document.getElementById('alpha-tooltip');
+    
+    // الحصول على جميع العناصر التي تحتوي على رسالة لألفا
+    const interactiveElements = document.querySelectorAll('[data-alpha-message]');
+    let timeoutId;
+    
+    // إضافة تفاعل المرور بالفأرة لكل عنصر
+    interactiveElements.forEach(element => {
+      element.addEventListener('mouseenter', function() {
+        // إلغاء المؤقت السابق إذا كان موجوداً
+        clearTimeout(timeoutId);
+        
+        // عرض الرسالة المخصصة للعنصر
+        alphaTooltip.textContent = this.getAttribute('data-alpha-message');
+        alphaCharacter.classList.add('active');
+      });
+      
+      element.addEventListener('mouseleave', function() {
+        // إخفاء الرسالة بعد تأخير بسيط
+        timeoutId = setTimeout(() => {
+          alphaCharacter.classList.remove('active');
+        }, 1000);
+      });
+    });
+  }
+</script>
+</body>
+</html>
